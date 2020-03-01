@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
     class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(args[0]);
+
+
         }
     }
 }
