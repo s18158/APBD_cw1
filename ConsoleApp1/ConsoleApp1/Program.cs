@@ -16,8 +16,9 @@ namespace ConsoleApp1
             }
 
             var emails = await GetEmails(args[0]);
+            //var emails = await GetEmails("https://www.pja.edu.pl/");
 
-            foreach(var email in emails)
+            foreach (var email in emails)
             {
                 Console.WriteLine(email);
             }
