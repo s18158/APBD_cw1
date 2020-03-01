@@ -18,11 +18,16 @@ namespace ConsoleApp1
             {
                 foreach (var a in args)
                 {
-                    Console.WriteLine(a);
+                    Console.WriteLine("Sprawdzam maile dla :"+a);
                 }
 
-                if (Uri.IsWellFormedUriString(args[0], UriKind.Absolute))
+                Uri uriResult;
+
+                Console.WriteLine("*****" + CheckURLValid(args[0], out uriResult));
+
+                if (CheckURLValid(args[0], out uriResult))
                 {
+
                     var emails = await GetEmails(args[0]);
                     //var emails = await GetEmails("https://www.pja.edu.pl/");
 
@@ -31,8 +36,6 @@ namespace ConsoleApp1
                         Console.WriteLine(email);
                     }
                 }
-
-                    
             }
 
         }
@@ -57,6 +60,25 @@ namespace ConsoleApp1
 
             return listOfEmails;
         }
+
+        public static bool CheckURLValid(string source)
+        {
+            Uri uriResult;
+            return Uri.TryCreate(source, UriKind.Absolute, out uriResult) && uriResult.Scheme == Uri.UriSchemeHttp;
+        }
+
+        /*public static bool CheckURLValid(string s, out Uri resultURI)
+        {
+            if (!Regex.IsMatch(s, @"^https?:\/\/", RegexOptions.IgnoreCase))
+                s = "http://" + s;
+
+            if (Uri.TryCreate(s, UriKind.Absolute, out resultURI))
+                return (resultURI.Scheme == Uri.UriSchemeHttp ||
+                        resultURI.Scheme == Uri.UriSchemeHttps);
+
+            return false;
+        }*/
+
     }
 
 }
