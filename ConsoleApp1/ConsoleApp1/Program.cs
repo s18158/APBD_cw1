@@ -10,17 +10,24 @@ namespace ConsoleApp1
     {
         public static async Task Main(string[] args)
         {
-            foreach(var a in args)
+            if (args.Length == 0)
             {
-                Console.WriteLine(a);
+                throw new ArgumentNullException("4.1");
             }
-
-            var emails = await GetEmails(args[0]);
-            //var emails = await GetEmails("https://www.pja.edu.pl/");
-
-            foreach (var email in emails)
+            else
             {
-                Console.WriteLine(email);
+                foreach (var a in args)
+                {
+                    Console.WriteLine(a);
+                }
+
+                var emails = await GetEmails(args[0]);
+                //var emails = await GetEmails("https://www.pja.edu.pl/");
+
+                foreach (var email in emails)
+                {
+                    Console.WriteLine(email);
+                }
             }
 
         }
