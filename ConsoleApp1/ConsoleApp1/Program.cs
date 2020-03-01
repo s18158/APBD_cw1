@@ -21,13 +21,18 @@ namespace ConsoleApp1
                     Console.WriteLine(a);
                 }
 
-                var emails = await GetEmails(args[0]);
-                //var emails = await GetEmails("https://www.pja.edu.pl/");
-
-                foreach (var email in emails)
+                if (Uri.IsWellFormedUriString(args[0], UriKind.Absolute))
                 {
-                    Console.WriteLine(email);
+                    var emails = await GetEmails(args[0]);
+                    //var emails = await GetEmails("https://www.pja.edu.pl/");
+
+                    foreach (var email in emails)
+                    {
+                        Console.WriteLine(email);
+                    }
                 }
+
+                    
             }
 
         }
